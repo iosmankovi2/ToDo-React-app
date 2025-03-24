@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from 'uuid';
+import ToDoItem from "./ToDoItem";
 
 const Todo = () => {
 
@@ -92,14 +93,12 @@ const Todo = () => {
             </div>
             <div>
                 {todoList.map((todoItem) =>
-                    <div key={todoItem.id} className={`todo-item-wrapper`}>
-                        <h3 className={`${todoItem.isCompleted ? 'line-through' : ''}`}>{todoItem.text}</h3>
-                        <div>
-                            <button onClick={() => handleCheckToDoItem(todoItem.id)} >Check</button>
-                            <button className="edit-button" onClick={() => onEdit(todoItem)}>Edit</button>
-                            <button disabled={!todoItem.isCompleted} className="delete-button" onClick={() => onDelete(todoItem)}>Delete</button>
-                        </div>
-                    </div>
+                    <ToDoItem
+                        todoItem={todoItem}
+                        handleCheckToDoItem={handleCheckToDoItem}
+                        onDelete={onDelete}
+                        onEdit={onEdit}
+                    />
                 )}
             </div>
         </div>
